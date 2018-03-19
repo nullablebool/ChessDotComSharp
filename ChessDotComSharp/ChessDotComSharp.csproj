@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Description>A .NET wrapper for Chess.com's API</Description>
+    <Company>Ambersoft Labs</Company>
+    <Authors>Kurt Gooding</Authors>
+    <RepositoryUrl>https://github.com/nullablebool/ChessDotComSharp</RepositoryUrl>
+    <PackageId>ChessDotComSharp</PackageId>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>chess, chess.com, .net</PackageTags>
+    <PackageProjectUrl>https://github.com/nullablebool/ChessDotComSharp</PackageProjectUrl>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+  </ItemGroup>
+
+</Project>
