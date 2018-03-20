@@ -34,11 +34,7 @@ The full documentation of [Chess.com](https://chess.com)'s API can be found at [
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/nullablebool/ChessDotComSharp/tags). 
+Contributions welcome, would like to stub out the service and add unit tests.
 
 ## Authors
 
