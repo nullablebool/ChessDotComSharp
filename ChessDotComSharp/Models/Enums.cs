@@ -23,7 +23,7 @@ namespace ChessDotComSharp.Models
         CrazyHouse
     };
 
-    public enum TimeClass { Daily, Rapid, Blitz, Bullet, Lightning };
+    public enum TimeClass { Daily, Rapid, Blitz, Bullet, Lightning, Standard };
 
     public enum Side { Black, White };
 

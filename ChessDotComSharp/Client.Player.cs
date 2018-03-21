@@ -115,19 +115,21 @@ namespace ChessDotComSharp
         /// <param name="month">The month, e.g 1</param>
         /// <param name="filename">The filename to save to. Defaults to username_YYYY_MM.pgn</param>
         /// <param name="overwrite">Whethere to overwrite an exisiting file.</param>
-        /// <exception cref="InvalidOperationException">Thrown when <paramref name="overwrite"/> is set to false and the <paramref name="filename"/> exists.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when <paramref name="overwrite"/> is set to false and the <paramref name="filename"/> exists, override behaviour by setting <paramref name="throwIfExists"/> to false.</exception>
         /// <returns></returns>
-        public async Task DownloadPlayerGameArchiveToFileAsync(string username, int year, int month, string filename = null, bool overwrite = false)
+        public async Task DownloadPlayerGameArchiveToFileAsync(string username, int year, int month, string filename = null, bool overwrite = false, bool throwIfExists = true)
         {
             var path = Path.GetFullPath(filename ?? $"{username}_{year}_{month}.pgn");
 
             if (!overwrite && File.Exists(path))
-                throw new InvalidOperationException($"File {path} already exists.");
+                if (throwIfExists) throw new InvalidOperationException($"File {path} already exists.");
+                else return;
 
             using (var stream = await DownloadPlayerGameArchiveAsStreamAsync(username, year, month))
             using (var fs = new FileStream(path, FileMode.Create))
             {
-                await stream.CopyToAsync(fs);
+                if (stream.Length > 0)
+                    await stream.CopyToAsync(fs);
             }
         }
 
