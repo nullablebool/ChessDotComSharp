@@ -20,7 +20,9 @@ namespace ChessDotComSharp.Models
         [EnumMember(Value = "threecheck")]
         ThreeCheck,
         [EnumMember(Value = "crazyhouse")]
-        CrazyHouse
+        CrazyHouse,
+        [EnumMember(Value = "oddschess")]
+        OddsChess
     };
 
     public enum TimeClass { Daily, Rapid, Blitz, Bullet, Lightning, Standard };
