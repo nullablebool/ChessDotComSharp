@@ -54,7 +54,7 @@ namespace ChessDotComSharp.Models
         /// <summary>
         /// Timeout percentage in the last 90 days
         /// </summary>
-        [J("timeout_percent")] public int TimeoutPercent { get; set; }
+        [J("timeout_percent")] public double TimeoutPercent { get; set; }
     }
 
     public partial class TournamentRecord
