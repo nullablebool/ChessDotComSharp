@@ -33,6 +33,12 @@ namespace ChessDotComSharp.Models
         [J("username")] public string Username { get; set; }
     }
 
+    public partial class Accuracies
+    {
+        [J("white")] public float? White { get; set; }
+        [J("black")] public float? Black { get; set; }
+    }
+
     public partial class ActiveGame : GameBase
     {
         /// <summary>
