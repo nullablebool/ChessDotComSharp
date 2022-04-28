@@ -8,6 +8,7 @@ namespace ChessDotComSharp.Models
     public class GameBase
     {
         [J("url")] public string Url { get; set; }
+        [J("accuracies")] public Accuracies Accuracies { get; set; }
         [J("pgn")] public string Pgn { get; set; }
         /// <summary>
         /// Specific time control used in the game, in the PGN standard notation <seealso cref="http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c9.6"/> 
