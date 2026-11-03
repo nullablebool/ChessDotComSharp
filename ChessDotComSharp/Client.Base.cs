@@ -10,18 +10,30 @@ namespace ChessDotComSharp
 {
     public partial class ChessDotComClient : IDisposable
     {
-        /// <summary>
-        /// Fallback User-Agent used when the caller does not supply one. Chess.com requires a
-        /// recognisable User-Agent containing contact information, so callers should pass their own.
-        /// </summary>
-        public const string DefaultUserAgent = "ChessDotComSharp/1.0 (+https://github.com/Hyper-Dragon/ChessDotComSharp)";
-
         private static HttpClient _client;
 
-        public ChessDotComClient(string userAgent = DefaultUserAgent)
+        /// <summary>
+        /// Creates a client.
+        /// </summary>
+        /// <param name="userAgent">
+        /// User-Agent sent with every request. This is required: Chess.com's Public API requires
+        /// callers to identify themselves with a User-Agent that contains developer contact
+        /// information, and may block applications that do not.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="userAgent"/> is null, empty or whitespace.
+        /// </exception>
+        public ChessDotComClient(string userAgent)
         {
+            if (string.IsNullOrWhiteSpace(userAgent))
+            {
+                throw new ArgumentException(
+                    "A User-Agent is required. Chess.com's Public API requires a User-Agent that identifies your application and contains contact information; requests from clients without one may be blocked.",
+                    nameof(userAgent));
+            }
+
             _client = new HttpClient();
-            _client.DefaultRequestHeaders.Add("User-Agent", string.IsNullOrWhiteSpace(userAgent) ? DefaultUserAgent : userAgent);
+            _client.DefaultRequestHeaders.Add("User-Agent", userAgent);
         }
 
         private async Task<T> GetAsync<T>(string uri)
