@@ -10,12 +10,18 @@ namespace ChessDotComSharp
 {
     public partial class ChessDotComClient : IDisposable
     {
+        /// <summary>
+        /// Fallback User-Agent used when the caller does not supply one. Chess.com requires a
+        /// recognisable User-Agent containing contact information, so callers should pass their own.
+        /// </summary>
+        public const string DefaultUserAgent = "ChessDotComSharp/1.0 (+https://github.com/Hyper-Dragon/ChessDotComSharp)";
+
         private static HttpClient _client;
 
-        public ChessDotComClient()
+        public ChessDotComClient(string userAgent = DefaultUserAgent)
         {
             _client = new HttpClient();
-            _client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36");
+            _client.DefaultRequestHeaders.Add("User-Agent", string.IsNullOrWhiteSpace(userAgent) ? DefaultUserAgent : userAgent);
         }
 
         private async Task<T> GetAsync<T>(string uri)
